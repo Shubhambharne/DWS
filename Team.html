@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team -Bus Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+       /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo-text {
+            margin-left: 10px;
+        }
+
+        .logo-text h1 {
+            color: #232323;
+            font-size: 24px;
+            margin-bottom: 0;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: #666;
+            font-size: 14px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            font-size: 15px;
+        }
+
+        nav ul li a.active,
+        nav ul li a:hover {
+            color: #ff6633;
+        }
+
+        .dropdown::after {
+            content: "▼";
+            font-size: 10px;
+            margin-left: 5px;
+        }
+
+        .contact-button {
+            background-color: #ff6633;
+            color: white;
+            border-radius: 5px;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .contact-button span {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('team-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Team Section */
+        .team-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            margin-bottom: 40px;
+        }
+
+        .section-header h3 {
+            color: #FF5722;
+            margin-bottom: 10px;
+        }
+
+        .join-btn {
+            display: inline-block;
+            background-color: #FF5722;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .team-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+        }
+
+        .team-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .team-info p {
+            color: #FF5722;
+            font-size: 0.9em;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('testimonial-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: white;
+            color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .rating {
+            color: #FFD700;
+            margin: 15px 0;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .client-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        /* Blog Section */
+        .blog-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .blog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 20px;
+        }
+
+        .blog-tag {
+            display: inline-block;
+            background: #FF5722;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            color: #FF5722;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #141414;
+            color: white;
+            padding: 60px 40px 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 25px;
+            font-size: 20px;
+            position: relative;
+        }
+
+        .footer-column p {
+            color: #999;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 60px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #ff6633;
+            color: white;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: white;
+            color: #ff6633;
+        }
+
+        .quick-links ul {
+            list-style: none;
+        }
+
+        .quick-links li {
+            margin-bottom: 15px;
+        }
+
+        .quick-links a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .quick-links a:hover {
+            color: #ff6633;
+        }
+
+        .quick-links i {
+            margin-right: 10px;
+            color: #ff6633;
+        }
+
+        .contact-item {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .contact-item i {
+            color: #ff6633;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .newsletter p {
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background-color: #ff6633;
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            cursor: pointer;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+            <div class="logo-text">
+                <h1>BusBooking</h1>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-page.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="our Bus.html" class="dropdown">Our Bus</a></li>
+                <li><a href="Team.html" class="dropdown">Pages</a></li>
+                <li><a href="Blog.html" class="active dropdown">Blog</a></li>
+                <li><a href="Contact Us.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="contact-button">
+            <span>Contact Us Now</span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Team</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="section-header">
+            <h3>Our Team</h3>
+            <h2>Our Expert Team</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <a href="#" class="join-btn">Join With Us</a>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="team1.jpg" alt="Ivan Itchinos">
+                <div class="team-info">
+                    <h4>Ivan Itchinos</h4>
+                    <p>Shuttle Owner</p>
+                </div>
+            </div>
+            <!-- Repeat team-card for other team members -->
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <h3>Our Testimonial</h3>
+            <h2>What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="rating">★★★★★</div>
+                    <div class="client-info">
+                        <img src="client1.jpg" alt="Bennett Miller">
+                        <div>
+                            <h4>Bennett Miller</h4>
+                            <p>Designer</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat testimonial-card for other testimonials -->
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-section">
+        <div class="blog-header">
+            <div>
+                <h3>Our News</h3>
+                <h2>Latest Articles & Blog</h2>
+            </div>
+            <a href="#" class="join-btn">Show All Blog</a>
+        </div>
+
+        <div class="blog-grid">
+            <div class="blog-card">
+                <img src="blog1.jpg" alt="Calculate The Cost Of Rent A Bus">
+                <div class="blog-content">
+                    <span class="blog-tag">Tips & Trick</span>
+                    <h3>Calculate The Cost Of Rent A Bus</h3>
+                    <p>Far far away, behind the word mountains, far from the countries...</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            <!-- Repeat blog-card for other articles -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <!-- Column 1 - About -->
+            <div class="footer-column">
+                <div class="footer-logo">
+                    <img src="https://via.placeholder.com/150x50" alt="Shuttle Logo">
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+    
+            <!-- Column 2 - Quick Links -->
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <div class="quick-links">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> About Us</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> Services</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> Projects</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> Pricing</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Column 3 - Contact Info -->
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <div class="contact-item">
+                    <i class="fa fa-map-marker-alt"></i>
+                    <div>
+                        <p>Jl. Raya Kuta No.21, Kuta, Bali 80361</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa fa-phone-alt"></i>
+                    <div>
+                        <p>(+62)81587 6218</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa fa-envelope"></i>
+                    <div>
+                        <p>support@domain.com</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Column 4 - Newsletter -->
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean
+                    massa.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address">
+                    <button><i class="fa fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    
+        <div class="copyright">
+            <p> Copyright © 2022. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

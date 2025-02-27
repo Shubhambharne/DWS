@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BusBooking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: #232323;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar .buy-button {
+            background-color: #7bbd42;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 3px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo-text {
+            margin-left: 10px;
+        }
+
+        .logo-text h1 {
+            color: #232323;
+            font-size: 24px;
+            margin-bottom: 0;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: #666;
+            font-size: 14px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            font-size: 15px;
+        }
+
+        nav ul li a.active,
+        nav ul li a:hover {
+            color: #ff6633;
+        }
+
+        .dropdown::after {
+            content: "▼";
+            font-size: 10px;
+            margin-left: 5px;
+        }
+
+        .contact-button {
+            background-color: #ff6633;
+            color: white;
+            border-radius: 5px;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .contact-button span {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('bus-repair.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 40px;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            max-width: 600px;
+        }
+
+        .breadcrumb {
+            text-align: right;
+            color: white;
+            padding: 20px 40px;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Blog Section */
+        .news-section {
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .news-heading {
+            margin-bottom: 40px;
+        }
+
+        .news-heading .category {
+            color: #ff6633;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .news-heading h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .news-heading h2 span {
+            color: #ff6633;
+        }
+
+        .news-heading p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Blog Cards */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .blog-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: white;
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-tag {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background: #ff6633;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .blog-tag.blue {
+            background: #3366ff;
+        }
+
+        .blog-tag.orange {
+            background: #ff6633;
+        }
+
+        .blog-content {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .blog-content h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .blog-content p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .read-more {
+            color: #ff6633;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .read-more i {
+            margin-left: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #141414;
+            color: white;
+            padding: 60px 40px 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 25px;
+            font-size: 20px;
+            position: relative;
+        }
+
+        .footer-column p {
+            color: #999;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 60px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #ff6633;
+            color: white;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: white;
+            color: #ff6633;
+        }
+
+        .quick-links ul {
+            list-style: none;
+        }
+
+        .quick-links li {
+            margin-bottom: 15px;
+        }
+
+        .quick-links a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .quick-links a:hover {
+            color: #ff6633;
+        }
+
+        .quick-links i {
+            margin-right: 10px;
+            color: #ff6633;
+        }
+
+        .contact-item {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .contact-item i {
+            color: #ff6633;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .newsletter p {
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background-color: #ff6633;
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            cursor: pointer;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+            <div class="logo-text">
+                <h1>BusBooking</h1>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-page.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="our Bus.html" class="dropdown">Our Bus</a></li>
+                <li><a href="Team.html" class="dropdown">Pages</a></li>
+                <li><a href="Blog.html" class="active dropdown">Blog</a></li>
+                <li><a href="Contact Us.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="contact-button">
+            Contact Us Now
+            <span>(+62) 81587 6218</span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Blog</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis,
+            pulvinar dapibus leo.</p>
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> » Blog
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="news-section">
+        <div class="news-heading">
+            <div class="category">Our News</div>
+            <h2>Latest <span>Articles</span> & Blog</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.</p>
+        </div>
+
+        <div class="blog-grid">
+            <!-- Blog Card 1 -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://via.placeholder.com/400x200" alt="Bus Service">
+                    <div class="blog-tag orange">Tips & Trick</div>
+                </div>
+                <div class="blog-content">
+                    <h3>Calculate The Cost Of Rent A Bus</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there
+                        live the blind texts. Separated they live...</p>
+                    <a href="#" class="read-more">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Blog Card 2 -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://via.placeholder.com/400x200" alt="Volvo Bus">
+                    <div class="blog-tag">Buses</div>
+                </div>
+                <div class="blog-content">
+                    <h3>New Bus Type : Volvo 403</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there
+                        live the blind texts. Separated they live...</p>
+                    <a href="#" class="read-more">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Blog Card 3 -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://via.placeholder.com/400x200" alt="Bus Rental Guide">
+                    <div class="blog-tag blue">Insight</div>
+                </div>
+                <div class="blog-content">
+                    <h3>Your Guide To Rent A Bus</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there
+                        live the blind texts. Separated they live...</p>
+                    <a href="#" class="read-more">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Blog Card 4 -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://via.placeholder.com/400x200" alt="Bus Etiquette">
+                    <div class="blog-tag">Buses</div>
+                </div>
+                <div class="blog-content">
+                    <h3>New Bus Type : Etiquette 101</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there
+                        live the blind texts. Separated they live...</p>
+                    <a href="#" class="read-more">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Blog Card 5 -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://via.placeholder.com/400x200" alt="Bus Trips">
+                    <div class="blog-tag orange">Tips & Trick</div>
+                </div>
+                <div class="blog-content">
+                    <h3>3 Trips Are Perfect for Rent A Bus</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there
+                        live the blind texts. Separated they live...</p>
+                    <a href="#" class="read-more">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Blog Card 6 -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://via.placeholder.com/400x200" alt="Bus Booking">
+                    <div class="blog-tag blue">Insight</div>
+                </div>
+                <div class="blog-content">
+                    <h3>10 Reasons to Book a Bus</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there
+                        live the blind texts. Separated they live...</p>
+                    <a href="#" class="read-more">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <!-- Column 1 - About -->
+            <div class="footer-column">
+                <div class="footer-logo">
+                    <img src="https://via.placeholder.com/150x50" alt="Shuttle Logo">
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Column 2 - Quick Links -->
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <div class="quick-links">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> About Us</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> Services</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> Projects</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> Pricing</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Column 3 - Contact Info -->
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <div class="contact-item">
+                    <i class="fa fa-map-marker-alt"></i>
+                    <div>
+                        <p>Jl. Raya Kuta No.21, Kuta, Bali 80361</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa fa-phone-alt"></i>
+                    <div>
+                        <p>(+62)81587 6218</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa fa-envelope"></i>
+                    <div>
+                        <p>support@domain.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 4 - Newsletter -->
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean
+                    massa.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address">
+                    <button><i class="fa fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p> Copyright © 2022. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

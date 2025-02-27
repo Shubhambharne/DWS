@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shuttle - Bus Charter Service</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f97316;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            color: #4b5563;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #f97316;
+        }
+
+        .contact-btn {
+            background: #f97316;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: #ea580c;
+        }
+
+        /* FAQ Hero section */
+        .faq-hero {
+            background: #111827;
+            color: white;
+            padding: 80px 0;
+        }
+
+        .faq-hero h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        /* FAQ Content section */
+        .faq-content {
+            padding: 48px 0;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .faq-section h2 {
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        .faq-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 16px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 16px;
+            background: #f9fafb;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* App section */
+        .app-section {
+            background: #111827;
+            color: white;
+            padding: 80px 0;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .app-content h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .app-btn {
+            display: inline-block;
+            background: #f97316;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 24px;
+        }
+
+        /* Blog section */
+        .blog-section {
+            padding: 64px 0;
+        }
+
+        .blog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .blog-card {
+            overflow: hidden;
+        }
+
+        .blog-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .blog-card p {
+            color: #4b5563;
+            margin-bottom: 16px;
+        }
+
+        .read-more {
+            color: #f97316;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            padding: 48px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+
+        .footer-col h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p {
+            color: #9ca3af;
+            margin-bottom: 8px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .social-links a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 16px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 8px 16px;
+            background: #1f2937;
+            border: none;
+            border-radius: 6px 0 0 6px;
+            color: white;
+        }
+
+        .newsletter-btn {
+            background: #f97316;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: #9ca3af;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #1f2937;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .faq-grid,
+            .app-grid,
+            .blog-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-header {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Shuttle</a>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Services</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact Us</a>
+            </nav>
+            <a href="#" class="contact-btn">Contact Us Now</a>
+        </div>
+    </header>
+
+    <!-- FAQ Hero -->
+    <section class="faq-hero">
+        <div class="container">
+            <h1>FAQ</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="faq-content">
+        <div class="container">
+            <div class="faq-grid">
+                <div class="faq-section">
+                    <h2>General Question</h2>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Are there offices in other areas?
+                            <span>↓</span>
+                        </button>
+                        <div class="faq-answer">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                    <!-- More FAQ items -->
+                </div>
+                <div class="faq-image">
+                    <img src="placeholder.jpg" alt="Bus charter service">
+                    <div class="consultation-card">
+                        <h3>If You Need Help, Get A Consultation</h3>
+                        <a href="#" class="read-more">View Details →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Section -->
+    <section class="app-section">
+        <div class="container">
+            <div class="app-grid">
+                <div class="app-content">
+                    <h2>Find A Bus Charter Near You With Our App</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <a href="#" class="app-btn">Download Shuttle App</a>
+                </div>
+                <div class="app-image">
+                    <img src="app-screenshot.jpg" alt="Mobile app screenshot">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-header">
+                <h2>Latest Articles & Blog</h2>
+                <a href="#" class="read-more">Show All Blog</a>
+            </div>
+            <div class="blog-grid">
+                <!-- Blog Card 1 -->
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="blog1.jpg" alt="Calculate The Cost Of Rent A Bus">
+                    </div>
+                    <h3>Calculate The Cost Of Rent A Bus</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia there
+                        live the blind texts.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+                <!-- More blog cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Shuttle</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Youtube</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <p><a href="#">About Us</a></p>
+                    <p><a href="#">Services</a></p>
+                    <p><a href="#">Pricing</a></p>
+                    <p><a href="#">Contact</a></p>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <p>8 Ripta Vale N2-21, Kuta, Bali 80361</p>
+                    <p>+62(0)81387 4215</p>
+                    <p>support@domain.com</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" class="newsletter-input">
+                        <button type="submit" class="newsletter-btn">→</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2023. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                answer.classList.toggle('active');
+                button.querySelector('span').textContent = answer.classList.contains('active') ? '↑' : '↓';
+            });
+        });
+    </script>
+</body>
+
+</html>
